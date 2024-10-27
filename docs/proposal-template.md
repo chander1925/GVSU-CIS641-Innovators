@@ -1,6 +1,6 @@
 Team name: Innovators
 
-Team members: •	Chander Singh Digari
+Team members: Chander Singh Digari
 
 # Introduction
 
@@ -12,9 +12,13 @@ This application will be cross-platform, designed to function smoothly across mu
 # Anticipated Technologies
 
 •	Python: The primary programming language used for developing the calculator application.
+
 •	tkinter: The GUI library that will be used to create the user interface, allowing for easy interaction with the calculator’s functionalities.
+
 •	math library: For advanced calculations, including trigonometric, hyperbolic, and logarithmic operations.
+
 •	GitHub: Version control and repository hosting to manage code changes and collaborate as a team.
+
 •	Cross-platform compatibility tools: No additional installation is required as Python's default libraries work across major operating systems.
 
 
@@ -31,10 +35,15 @@ The development process will be divided into several phases:
 # Estimated Timeline
 
 •	Week 1&2: Project Planning and Initial Research
+
 •	Week 3&4: Initial GUI Setup using tkinter
+
 •	Week 5: Implement Basic Arithmetic Functions (Addition, Subtraction, Multiplication, Division)
+
 •	Week 6&7: Implement Trigonometric and Hyperbolic Functions
+
 •	Week 8&9: Testing (Unit Tests, Debugging) and GUI Refinement
+
 •	Week 10: Final Cross-Platform Testing, Performance Optimization, and Documentation
 
 # Anticipated Problems
