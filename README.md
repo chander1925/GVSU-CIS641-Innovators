@@ -12,3 +12,6 @@ The calculator project is designed to provide a versatile and user-friendly tool
 * Libraries: The app uses the math library (which is part of the Python standard library) and tkinter for the graphical user interface. No additional installation is needed for these libraries, as they come pre-installed with Python.
 
 ## Run Instructions
+
+* To run the Application, download it from the src folder.
+* Once downloaded, run the application from the desktop.
