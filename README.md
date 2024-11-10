@@ -13,5 +13,14 @@ The calculator project is designed to provide a versatile and user-friendly tool
 
 ## Run Instructions
 
+* The app has two ways of running it, through the application or running code
+  
+### Run the application
+
 * To run the Application, download it from the src folder.
 * Once downloaded, run the application from the desktop.
+
+### Run code
+
+* One way to run the is to copy the code from calc.py
+* Another way is to clone the repository https://github.com/chander1925/GVSU-CIS641-Innovators.git
