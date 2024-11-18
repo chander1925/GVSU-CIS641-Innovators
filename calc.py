@@ -159,8 +159,15 @@ class Calculator:
             self.update_label()
 
     def square(self):
-        self.current_expression = "square("
-        self.update_label()
+        try:
+            # We replace 'square(' with '**2' to square the number
+            self.current_expression = f"({self.current_expression})**2"
+            self.update_label()
+        except Exception as e:
+            print(f"Error in square: {e}")
+            self.current_expression = "Error"
+            self.update_label()
+
 
     def create_square_button(self):
         button = tk.Button(self.buttons_frame, text="x\u00b2", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
@@ -180,14 +187,27 @@ class Calculator:
         self.total_expression += self.current_expression
         self.update_total_label()
         try:
-            # Apply inverse functions if shift is on
+            # Handle square root
+            self.total_expression = self.total_expression.replace("√", "math.sqrt")
+            
+            # Handle log and ln
+            self.total_expression = self.total_expression.replace("ln", "log")
+            self.total_expression = self.total_expression.replace("log", "math.log10")
+
+            # Handle exponentiation
+            if self.is_shift:
+                self.total_expression = self.total_expression.replace("^", "**(1/")
+            else:
+                self.total_expression = self.total_expression.replace("^", "**")
+
+            # Handle trigonometric functions based on shift state
             if self.is_shift:
                 self.total_expression = self.total_expression.replace("sin", "math.asin")
                 self.total_expression = self.total_expression.replace("cos", "math.acos")
                 self.total_expression = self.total_expression.replace("tan", "math.atan")
-                self.total_expression = self.total_expression.replace("sinh", "asinh")
-                self.total_expression = self.total_expression.replace("cosh", "acosh")
-                self.total_expression = self.total_expression.replace("tanh", "atanh")
+                self.total_expression = self.total_expression.replace("sinh", "sinh")
+                self.total_expression = self.total_expression.replace("cosh", "cosh")
+                self.total_expression = self.total_expression.replace("tanh", "tanh")
             else:
                 self.total_expression = self.total_expression.replace("sin", "math.sin")
                 self.total_expression = self.total_expression.replace("cos", "math.cos")
@@ -196,22 +216,12 @@ class Calculator:
                 self.total_expression = self.total_expression.replace("cosh", "cosh")
                 self.total_expression = self.total_expression.replace("tanh", "tanh")
 
-            # Add log and ln using math module
-            self.total_expression = self.total_expression.replace("ln", "log")
-            self.total_expression = self.total_expression.replace("log", "log10")
-
-            # Handle power and roots
-            if self.is_shift:
-                self.total_expression = self.total_expression.replace("^", "**(1/")
-            else:
-                self.total_expression = self.total_expression.replace("^", "**")
-
-            print(f"Evaluating: {self.total_expression}")  # Print statement for debugging
+            print(f"Evaluating: {self.total_expression}")  # Debugging print statement
 
             self.current_expression = str(eval(self.total_expression))
             self.total_expression = ""
         except Exception as e:
-            print(f"Error in evaluation: {e}")  # Print the error for debugging
+            print(f"Error in evaluation: {e}")  # Debugging print statement
             self.current_expression = "Error"
         finally:
             self.update_label()
@@ -335,10 +345,9 @@ class Calculator:
         self.update_label()
 
     def create_exp_button(self):
-        # Creating the exp button
         exp_button = tk.Button(self.buttons_frame, text="exp", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                borderwidth=0, command=lambda: self.add_to_expression("math.exp("))
-        exp_button.grid(row=4, column=8, sticky=tk.NSEW)  # Position below ^ and to the right of log
+        exp_button.grid(row=4, column=8, sticky=tk.NSEW)
 
     def create_buttons_frame(self):
         frame = tk.Frame(self.window)
@@ -367,32 +376,26 @@ class Calculator:
         close_paren_button.pack(side=tk.RIGHT, expand=True, fill="both")
 
     def create_trigonometric_buttons(self):
-        # SIN Button
         self.sin_button = tk.Button(self.buttons_frame, text="sin", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                     borderwidth=0, command=lambda: self.add_trigonometric_function("sin"))
         self.sin_button.grid(row=2, column=5, sticky=tk.NSEW)
 
-        # SINH Button
         self.sinh_button = tk.Button(self.buttons_frame, text="sinh", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                      borderwidth=0, command=lambda: self.add_trigonometric_function("sinh"))
         self.sinh_button.grid(row=2, column=6, sticky=tk.NSEW)
 
-        # COS Button
         self.cos_button = tk.Button(self.buttons_frame, text="cos", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                     borderwidth=0, command=lambda: self.add_trigonometric_function("cos"))
         self.cos_button.grid(row=3, column=5, sticky=tk.NSEW)
 
-        # COSH Button
         self.cosh_button = tk.Button(self.buttons_frame, text="cosh", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                      borderwidth=0, command=lambda: self.add_trigonometric_function("cosh"))
         self.cosh_button.grid(row=3, column=6, sticky=tk.NSEW)
 
-        # TAN Button
         self.tan_button = tk.Button(self.buttons_frame, text="tan", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                     borderwidth=0, command=lambda: self.add_trigonometric_function("tan"))
         self.tan_button.grid(row=4, column=5, sticky=tk.NSEW)
 
-        # TANH Button
         self.tanh_button = tk.Button(self.buttons_frame, text="tanh", bg=OFF_WHITE, fg=LABEL_COLOR, font=DEFAULT_FONT_STYLE,
                                      borderwidth=0, command=lambda: self.add_trigonometric_function("tanh"))
         self.tanh_button.grid(row=4, column=6, sticky=tk.NSEW)
