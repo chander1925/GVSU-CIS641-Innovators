@@ -187,6 +187,7 @@ This section contains links to the developed software artifacts that support the
 * [Class Diagram](https://github.com/chander1925/GVSU-CIS641-Innovators/blob/main/artifacts/Calculator%20APP%20-%20Class%20Diagram.drawio.png)
 * [Use Case Diagram](https://github.com/chander1925/GVSU-CIS641-Innovators/blob/main/artifacts/Calculator%20App%20-%20Use%20Case%20Diagram.drawio.png)
 * [Activity Diagram](https://github.com/chander1925/GVSU-CIS641-Innovators/blob/main/artifacts/calculatorApp%20-%20Activity%20Diagram.drawio.png)
+* [Object Diagram](https://github.com/chander1925/GVSU-CIS641-Innovators/blob/main/artifacts/Object%20Diagram%20(Calculator%20App).jpg)
 
 # Additional Links
 * [Assignment 3](https://chander1925.github.io/-CIS641-HW3-digari/)
